@@ -1,12 +1,12 @@
 package com.opluss.pedidossabor
 
-import android.app.Application
+import androidx.multidex.MultiDexApplication
 import com.opluss.pedidossabor.di.AppModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
 
-class PedidosSaborApplication : Application() {
+class PedidosSaborApplication : MultiDexApplication() {
     override fun onCreate() {
         super.onCreate()
         startKoin {

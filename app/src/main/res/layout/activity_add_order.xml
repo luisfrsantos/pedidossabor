@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".order.AddOrderActivity">
+    tools:context=".order.ui.AddOrderActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -19,118 +19,131 @@
             app:popupTheme="@style/AppTheme.PopupOverlay" />
 
     </com.google.android.material.appbar.AppBarLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="?attr/actionBarSize">
+        android:layout_height="match_parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="?attr/actionBarSize">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/text_input_layout_name"
-            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginLeft="24dp"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="24dp"
-            android:layout_marginRight="24dp"
-            android:hint="@string/textfield_label_name"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/text_input_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/text_input_layout_phone"
-            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:hint="@string/textfield_label_phone"
-            app:layout_constraintEnd_toEndOf="@+id/text_input_layout_name"
-            app:layout_constraintStart_toStartOf="@+id/text_input_layout_name"
-            app:layout_constraintTop_toBottomOf="@+id/text_input_layout_name">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/text_input_phone"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/text_input_layout_product"
-            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:hint="@string/textfield_label_product"
-            app:layout_constraintEnd_toEndOf="@+id/text_input_layout_name"
-            app:layout_constraintStart_toStartOf="@+id/text_input_layout_phone"
-            app:layout_constraintTop_toBottomOf="@+id/text_input_layout_phone">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/text_input_product"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/text_input_layout_value"
-            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:hint="@string/textfield_label_value"
-            app:layout_constraintEnd_toEndOf="@+id/text_input_layout_name"
-            app:layout_constraintStart_toStartOf="@+id/text_input_layout_product"
-            app:layout_constraintTop_toBottomOf="@+id/text_input_layout_product">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/text_input_value"
-                android:layout_width="match_parent"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/text_input_layout_name"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:inputType="numberDecimal"
-                />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_marginStart="24dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginRight="24dp"
+                android:hint="@string/textfield_label_name"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/text_input_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/text_input_layout_phone"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:hint="@string/textfield_label_phone"
+                app:layout_constraintEnd_toEndOf="@+id/text_input_layout_name"
+                app:layout_constraintStart_toStartOf="@+id/text_input_layout_name"
+                app:layout_constraintTop_toBottomOf="@+id/text_input_layout_name">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/text_input_phone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="phone" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/text_input_layout_product"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:hint="@string/textfield_label_product"
+                app:layout_constraintEnd_toEndOf="@+id/text_input_layout_name"
+                app:layout_constraintStart_toStartOf="@+id/text_input_layout_phone"
+                app:layout_constraintTop_toBottomOf="@+id/text_input_layout_phone">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/text_input_product"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/text_input_layout_value"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:hint="@string/textfield_label_value"
+                app:layout_constraintEnd_toEndOf="@+id/text_input_layout_name"
+                app:layout_constraintStart_toStartOf="@+id/text_input_layout_product"
+                app:layout_constraintTop_toBottomOf="@+id/text_input_layout_product">
+
+                <me.abhinay.input.CurrencyEditText
+                    android:id="@+id/text_input_value"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number" />
+            </com.google.android.material.textfield.TextInputLayout>
 
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/text_input_layout_date"
-            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:hint="@string/textfield_label_date"
-            app:layout_constraintEnd_toEndOf="@+id/text_input_layout_name"
-            app:layout_constraintStart_toStartOf="@+id/text_input_layout_value"
-            app:layout_constraintTop_toBottomOf="@+id/text_input_layout_value">
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/text_input_layout_date"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:hint="@string/textfield_label_date"
+                app:layout_constraintEnd_toEndOf="@+id/text_input_layout_name"
+                app:layout_constraintStart_toStartOf="@+id/text_input_layout_value"
+                app:layout_constraintTop_toBottomOf="@+id/text_input_layout_value">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/text_input_date"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/text_input_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.switchmaterial.SwitchMaterial
+            <com.google.android.material.switchmaterial.SwitchMaterial
 
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:checked="false"
-            android:text="@string/switch_material_status"
-            android:layout_marginTop="16dp"
-            app:layout_constraintEnd_toEndOf="@+id/text_input_layout_date"
-            app:layout_constraintStart_toStartOf="@+id/text_input_layout_date"
-            app:layout_constraintTop_toBottomOf="@+id/text_input_layout_date"
-            />
+                android:id="@+id/switch_pay_day"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:checked="false"
+                android:text="@string/switch_material_status"
+                app:layout_constraintEnd_toEndOf="@+id/text_input_layout_date"
+                app:layout_constraintStart_toStartOf="@+id/text_input_layout_date"
+                app:layout_constraintTop_toBottomOf="@+id/text_input_layout_date" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <Button
+                android:id="@+id/button_save_order"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="@string/button_save_order"
+                app:layout_constraintEnd_toEndOf="@+id/switch_pay_day"
+                app:layout_constraintStart_toStartOf="@+id/switch_pay_day"
+                app:layout_constraintTop_toBottomOf="@+id/switch_pay_day" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

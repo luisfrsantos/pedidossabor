@@ -15,4 +15,6 @@
     <string name="textfield_label_value">Value</string>
     <string name="textfield_label_date">Date</string>
     <string name="switch_material_status">paid</string>
+    <string name="button_save_order">Save</string>
+    <string name="field_is_required">Campo é obrigatório</string>
 </resources>

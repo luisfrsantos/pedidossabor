@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "571690835842",
+    "firebase_url": "https://pedidossabor-1b055.firebaseio.com",
+    "project_id": "pedidossabor-1b055",
+    "storage_bucket": "pedidossabor-1b055.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:571690835842:android:b7808a3ed6725e0dbfb99b",
+        "android_client_info": {
+          "package_name": "com.opluss.pedidossabor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "571690835842-ha1etshoar0jecr89l48qku6etb8i5r8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBzeOBE5SiADVbXigc1ghDt1JqfYieITLw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "571690835842-ha1etshoar0jecr89l48qku6etb8i5r8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

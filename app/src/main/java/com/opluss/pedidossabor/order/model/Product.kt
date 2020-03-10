@@ -1,3 +1,6 @@
 package com.opluss.pedidossabor.order.model
 
-data class Product(val name: String, val value: Number)
+class Product {
+    var name: String? = null
+    var value: Double? = null
+}

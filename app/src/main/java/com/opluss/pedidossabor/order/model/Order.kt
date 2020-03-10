@@ -1,5 +1,11 @@
 package com.opluss.pedidossabor.order.model
 
-import java.sql.Timestamp
+import com.google.firebase.Timestamp
 
-data class Order(val customer: Customer, val product: Product, val date: Timestamp, val payday: Boolean)
+class Order {
+    var customer: Customer? = null
+    var product: Product? = null
+    var date: Timestamp? = null
+    var payState: Boolean? = null
+    var payday: Boolean? = null
+}

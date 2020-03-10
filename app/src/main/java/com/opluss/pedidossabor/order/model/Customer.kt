@@ -1,3 +1,6 @@
 package com.opluss.pedidossabor.order.model
 
-data class Customer(val name: String, val phone: String)
+class Customer {
+    var name: String? = null
+    var phone: String? = null
+}

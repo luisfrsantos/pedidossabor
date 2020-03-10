@@ -29,7 +29,6 @@ import kotlinx.android.synthetic.main.activity_add_order.text_input_product
 import kotlinx.android.synthetic.main.activity_add_order.text_input_value
 import kotlinx.android.synthetic.main.activity_main.toolbar
 import org.koin.android.ext.android.inject
-import java.text.DecimalFormat
 
 class AddOrderActivity : AppCompatActivity() {
 
@@ -50,11 +49,11 @@ class AddOrderActivity : AppCompatActivity() {
         }
 
         viewModel.getState().observe(this, Observer { state ->
-            when (state) {
+            when (state!!) {
                 LOADING -> {
                 }
                 SUCCESS -> {
-                    AlertDialog.Builder(applicationContext)
+                    AlertDialog.Builder(this)
                         .setTitle("Legal")
                         .setMessage("Pedido salvo com sucesso !")
                         .setPositiveButton(android.R.string.ok) { _, _ ->
@@ -95,14 +94,20 @@ class AddOrderActivity : AppCompatActivity() {
         val customerName = text_input_name.text.toString()
         val customerPhone = text_input_phone.text.toString()
         val productName = text_input_product.text.toString()
-        val productValue = DecimalFormat().parse(text_input_value.text.toString())!!
+        val productValue = text_input_value.text.toString().trim().replace(",", ".").toDouble()
         val date = text_input_date.text.toString()
         val paidDay = switch_pay_day.isChecked
-        val product = Product(productName, productValue)
-        val customer = Customer(customerName, customerPhone)
-        val order =
-            Order(customer, product, DateHelper.toTimesTamp(date, BR_PATTERN_DISPLAY), paidDay)
-
+        val product = Product()
+        product.name = productName
+        product.value = productValue
+        val customer = Customer()
+        customer.name = customerName
+        customer.phone = customerPhone
+        val order = Order()
+        order.customer = customer
+        order.product = product
+        order.date = DateHelper.toTimesTamp(date, BR_PATTERN_DISPLAY)
+        order.payState = paidDay
         viewModel.save(order)
     }
 }

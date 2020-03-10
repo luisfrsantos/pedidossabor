@@ -8,7 +8,7 @@ abstract class BaseRepository<T> {
 
     abstract fun save(data: T)
 
-    abstract fun findByMond(id: String)
+    abstract fun findByMond()
 
     enum class State {
         SUCCESS,

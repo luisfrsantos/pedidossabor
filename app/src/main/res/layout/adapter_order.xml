@@ -20,28 +20,38 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_icon_order_activity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.23000002"
+                app:srcCompat="@drawable/ic_shopping_basket_black_64dp" />
+
             <TextView
                 android:id="@+id/customer_name_adpter_order"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginLeft="16dp"
-                android:layout_marginTop="32dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginRight="16dp"
-                android:gravity="center"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintStart_toEndOf="@+id/iv_icon_order_activity"
+                app:layout_constraintTop_toTopOf="@+id/iv_icon_order_activity" />
 
             <TextView
                 android:id="@+id/product_name_adpter_order"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="@+id/customer_name_adpter_order"
                 app:layout_constraintStart_toStartOf="@+id/customer_name_adpter_order"
                 app:layout_constraintTop_toBottomOf="@+id/customer_name_adpter_order" />
 
@@ -49,38 +59,32 @@
                 android:id="@+id/value_adapter_order"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginBottom="32dp"
                 android:textColor="#009688"
                 android:textSize="30sp"
                 android:textStyle="bold|italic"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
+                app:layout_constraintEnd_toEndOf="@+id/date_adapter_order"
+                app:layout_constraintTop_toTopOf="@+id/state_pay_adapter_order" />
 
             <TextView
                 android:id="@+id/date_adapter_order"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="@+id/product_name_adpter_order"
                 app:layout_constraintStart_toStartOf="@+id/product_name_adpter_order"
                 app:layout_constraintTop_toBottomOf="@+id/product_name_adpter_order" />
 
             <TextView
                 android:id="@+id/state_pay_adapter_order"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
                 android:layout_marginBottom="16dp"
                 android:textColor="#009688"
                 android:textColorHighlight="#009688"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/date_adapter_order"
                 app:layout_constraintTop_toBottomOf="@+id/date_adapter_order" />
         </androidx.constraintlayout.widget.ConstraintLayout>

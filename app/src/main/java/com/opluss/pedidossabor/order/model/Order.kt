@@ -6,6 +6,6 @@ class Order {
     var customer: Customer? = null
     var product: Product? = null
     var date: Timestamp? = null
-    var payState: Boolean? = null
+    var payState: Boolean = false
     var payday: Boolean? = null
 }

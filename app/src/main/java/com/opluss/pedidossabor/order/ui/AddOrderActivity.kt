@@ -27,7 +27,7 @@ import kotlinx.android.synthetic.main.activity_add_order.text_input_name
 import kotlinx.android.synthetic.main.activity_add_order.text_input_phone
 import kotlinx.android.synthetic.main.activity_add_order.text_input_product
 import kotlinx.android.synthetic.main.activity_add_order.text_input_value
-import kotlinx.android.synthetic.main.activity_main.toolbar
+import kotlinx.android.synthetic.main.activity_add_order.toolbar
 import org.koin.android.ext.android.inject
 
 class AddOrderActivity : AppCompatActivity() {

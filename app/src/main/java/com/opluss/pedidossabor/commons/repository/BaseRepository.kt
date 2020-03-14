@@ -6,9 +6,11 @@ abstract class BaseRepository<T> {
 
     protected val db = FirebaseFirestore.getInstance()
 
-    abstract fun save(data: T)
+    abstract fun saveOrUpdate(data: T, old: T? = null)
 
-    abstract fun findByMond()
+    abstract fun findByLastMonth()
+
+    abstract fun deleteByID(id: String)
 
     enum class State {
         SUCCESS,

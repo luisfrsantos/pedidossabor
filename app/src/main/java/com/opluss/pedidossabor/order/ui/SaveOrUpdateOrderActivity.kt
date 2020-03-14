@@ -5,6 +5,7 @@ import android.telephony.PhoneNumberFormattingTextWatcher
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
+import com.google.gson.Gson
 import com.opluss.pedidossabor.R
 import com.opluss.pedidossabor.commons.helper.BR_PATTERN_DISPLAY
 import com.opluss.pedidossabor.commons.helper.DateHelper
@@ -15,6 +16,7 @@ import com.opluss.pedidossabor.commons.repository.BaseRepository.State.SUCCESS
 import com.opluss.pedidossabor.order.model.Customer
 import com.opluss.pedidossabor.order.model.Order
 import com.opluss.pedidossabor.order.model.Product
+import com.opluss.pedidossabor.order.reposotory.COLLECTION_NAME
 import kotlinx.android.synthetic.main.activity_add_order.button_save_order
 import kotlinx.android.synthetic.main.activity_add_order.switch_pay_day
 import kotlinx.android.synthetic.main.activity_add_order.text_input_date
@@ -30,9 +32,10 @@ import kotlinx.android.synthetic.main.activity_add_order.text_input_value
 import kotlinx.android.synthetic.main.activity_add_order.toolbar
 import org.koin.android.ext.android.inject
 
-class AddOrderActivity : AppCompatActivity() {
+class SaveOrUpdateOrderActivity : AppCompatActivity() {
 
     private val viewModel: AddOrderViewModel by inject()
+    private var oldOrder: Order? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,6 +46,8 @@ class AddOrderActivity : AppCompatActivity() {
 
         text_input_date.setText(now(BR_PATTERN_DISPLAY))
         text_input_phone.addTextChangedListener(PhoneNumberFormattingTextWatcher())
+        oldOrder = Gson().fromJson(intent.getStringExtra(COLLECTION_NAME), Order::class.java)
+        initLables(oldOrder)
 
         button_save_order.setOnClickListener {
             save()
@@ -66,7 +71,18 @@ class AddOrderActivity : AppCompatActivity() {
         })
     }
 
-    fun save() {
+    private fun initLables(order: Order? = null) {
+        order?.let {
+            text_input_name.setText(it.customer!!.name)
+            text_input_phone.setText(it.customer!!.phone)
+            text_input_product.setText(it.product!!.name)
+            text_input_value.setText(it.product!!.value.toString().trim().replace(",", "."))
+            text_input_date.setText(DateHelper.timesTampToString(it.date!!, BR_PATTERN_DISPLAY))
+            switch_pay_day.isChecked = it.payState
+        }
+    }
+
+    private fun save() {
         if (text_input_name.text.isNullOrEmpty()) {
             text_input_layout_name.error = getString(R.string.field_is_required)
             return
@@ -108,6 +124,6 @@ class AddOrderActivity : AppCompatActivity() {
         order.product = product
         order.date = DateHelper.toTimesTamp(date, BR_PATTERN_DISPLAY)
         order.payState = paidDay
-        viewModel.save(order)
+        viewModel.saveOrUpdate(order, oldOrder)
     }
 }

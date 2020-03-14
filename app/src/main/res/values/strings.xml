@@ -8,4 +8,6 @@
     <string name="switch_material_status">paid</string>
     <string name="button_save_order">Save</string>
     <string name="field_is_required">Campo é obrigatório</string>
+    <string name="label_paid">Pago</string>
+    <string name="label_not_paid">Não pago</string>
 </resources>

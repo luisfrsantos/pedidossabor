@@ -8,7 +8,7 @@ class AddOrderViewModel(private val orderRepository: OrderRepository) : ViewMode
 
     fun getState() = orderRepository.state
 
-    fun save(data: Order) {
-        orderRepository.save(data)
+    fun saveOrUpdate(data: Order, old: Order? = null) {
+        orderRepository.saveOrUpdate(data, old)
     }
 }

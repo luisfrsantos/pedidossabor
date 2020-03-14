@@ -10,7 +10,7 @@ import org.koin.dsl.module
 
 object AppModule {
     val app = module {
-            single { OrderRepository() }
+            factory { OrderRepository() }
             viewModel { AddOrderViewModel(get()) }
             viewModel { OrderViewModel(get()) }
             factory { OrderAdapter(androidContext()) }

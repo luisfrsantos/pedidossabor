@@ -3,6 +3,7 @@ package com.opluss.pedidossabor.order.reposotory
 import android.annotation.SuppressLint
 import androidx.lifecycle.MutableLiveData
 import com.google.firebase.Timestamp
+import com.google.firebase.firestore.Query
 import com.opluss.pedidossabor.commons.helper.BR_PATTERN_DISPLAY
 import com.opluss.pedidossabor.commons.helper.DateHelper
 import com.opluss.pedidossabor.commons.helper.DateHelper.toTimesTamp
@@ -22,7 +23,12 @@ class OrderRepository : BaseRepository<Order>() {
         MutableLiveData<ArrayList<Order>>()
     }
 
-    override fun save(data: Order) {
+    override fun saveOrUpdate(data: Order, old: Order?) {
+        old?.run {
+            if (data.customer!!.name!! != old.customer!!.name!! || data.date != old.date) {
+                deleteByID(createID(old.customer!!, old.date!!))
+            }
+        }
         db.collection(COLLECTION_NAME)
             .document(createID(data.customer!!, data.date!!))
             .set(data)
@@ -35,9 +41,11 @@ class OrderRepository : BaseRepository<Order>() {
             }
     }
 
-    override fun findByMond() {
+    override fun findByLastMonth() {
+
         db.collection(COLLECTION_NAME)
-            .whereGreaterThan(
+            .orderBy("date", Query.Direction.DESCENDING)
+            .whereLessThan(
                 "date",
                 toTimesTamp(DateHelper.minusDays(29, BR_PATTERN_DISPLAY), BR_PATTERN_DISPLAY)
             )
@@ -50,9 +58,13 @@ class OrderRepository : BaseRepository<Order>() {
 
     @SuppressLint("DefaultLocale")
     private fun createID(customer: Customer, date: Timestamp): String {
-        return "${customer.name!!.capitalize()}$date"
+        return "${customer.name!!.capitalize()}${date.seconds}"
             .replace("\\s".toRegex(), "")
             .replace("/", "")
             .replace(":", "")
+    }
+
+    override fun deleteByID(id: String) {
+        db.collection(COLLECTION_NAME).document(id).delete()
     }
 }

@@ -33,6 +33,6 @@ class OrderViewModel(private val orderRepository: OrderRepository) : ViewModel()
     }
 
     fun findByMonth() {
-        orderRepository.findByMond()
+        orderRepository.findByLastMonth()
     }
 }

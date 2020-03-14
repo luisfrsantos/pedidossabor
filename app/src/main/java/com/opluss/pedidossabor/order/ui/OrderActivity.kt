@@ -25,6 +25,7 @@ class OrderActivity : AppCompatActivity() {
 
         viewModel.findByMonth()
         viewModel.getOrder().observe(this, Observer { orderView ->
+            orderAdapter.orderList.removeAll(orderAdapter.orderList)
             orderAdapter.orderList = orderView.orderList
             tv_total_value_order_activity.text = orderView.total
             tv_total_pay_value_order_activity.text = orderView.totalPaid
@@ -32,7 +33,7 @@ class OrderActivity : AppCompatActivity() {
         })
 
         add_order.setOnClickListener {
-            startActivity(Intent(applicationContext, AddOrderActivity::class.java))
+            startActivity(Intent(applicationContext, SaveOrUpdateOrderActivity::class.java))
         }
     }
 }

@@ -15,5 +15,5 @@ object DateHelper {
         Timestamp(DateTime.parse(value, forPattern(pattern)).toDate())
 
     fun timesTampToString(value: Timestamp, pattern: String): String =
-        DateTime(value.seconds).toString(forPattern(pattern))
+        DateTime(value.toDate()).toString(forPattern(pattern))
 }

@@ -12,6 +12,7 @@ import com.opluss.pedidossabor.order.model.Customer
 import com.opluss.pedidossabor.order.model.Order
 
 const val COLLECTION_NAME = "Order"
+const val CUSTOMER_NAME_SEARCH = "name"
 
 class OrderRepository : BaseRepository<Order>() {
 
@@ -42,10 +43,9 @@ class OrderRepository : BaseRepository<Order>() {
     }
 
     override fun findByLastMonth() {
-
         db.collection(COLLECTION_NAME)
             .orderBy("date", Query.Direction.DESCENDING)
-            .whereLessThan(
+            .whereGreaterThan(
                 "date",
                 toTimesTamp(DateHelper.minusDays(29, BR_PATTERN_DISPLAY), BR_PATTERN_DISPLAY)
             )
@@ -66,5 +66,24 @@ class OrderRepository : BaseRepository<Order>() {
 
     override fun deleteByID(id: String) {
         db.collection(COLLECTION_NAME).document(id).delete()
+    }
+
+    override fun findByParam(param: String, values: String) {
+        db.collection(COLLECTION_NAME)
+            .orderBy("date", Query.Direction.DESCENDING)
+            .limit(100)
+            .addSnapshotListener { snapshot, _ ->
+                snapshot?.apply {
+
+                    val resultList = toObjects(Order::class.java) as ArrayList<Order>?
+                    val searchResult = arrayListOf<Order>()
+                    resultList!!.forEach {
+                        if (it.customer!!.name == values) {
+                            searchResult.add(it)
+                        }
+                    }
+                    orderList.postValue(searchResult)
+                }
+            }
     }
 }

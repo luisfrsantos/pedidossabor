@@ -10,6 +10,8 @@ abstract class BaseRepository<T> {
 
     abstract fun findByLastMonth()
 
+    abstract fun findByParam(param: String, values: String)
+
     abstract fun deleteByID(id: String)
 
     enum class State {

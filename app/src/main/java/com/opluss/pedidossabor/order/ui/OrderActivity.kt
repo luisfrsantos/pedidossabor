@@ -1,5 +1,6 @@
 package com.opluss.pedidossabor.order.ui
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -35,5 +36,26 @@ class OrderActivity : AppCompatActivity() {
         add_order.setOnClickListener {
             startActivity(Intent(applicationContext, SaveOrUpdateOrderActivity::class.java))
         }
+
+        iv_icon_search_order_activity.setOnClickListener {
+            startActivityForResult(Intent(applicationContext, SearchActivity::class.java), REQUEST_CODE)
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+
+        when (resultCode) {
+            Activity.RESULT_OK -> {
+                if (requestCode == REQUEST_CODE) {
+                    viewModel.findByName(data!!.extras!!.get("name").toString())
+                }
+            }
+        }
+
+        super.onActivityResult(requestCode, resultCode, data)
+    }
+
+    companion object {
+        const val REQUEST_CODE = 1001
     }
 }

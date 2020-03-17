@@ -10,6 +10,7 @@ import com.opluss.pedidossabor.R
 import com.opluss.pedidossabor.commons.helper.BR_PATTERN_DISPLAY
 import com.opluss.pedidossabor.commons.helper.DateHelper
 import com.opluss.pedidossabor.commons.helper.DateHelper.now
+import com.opluss.pedidossabor.commons.helper.MoneyFormat
 import com.opluss.pedidossabor.commons.repository.BaseRepository.State.ERROR
 import com.opluss.pedidossabor.commons.repository.BaseRepository.State.LOADING
 import com.opluss.pedidossabor.commons.repository.BaseRepository.State.SUCCESS
@@ -76,7 +77,7 @@ class SaveOrUpdateOrderActivity : AppCompatActivity() {
             text_input_name.setText(it.customer!!.name)
             text_input_phone.setText(it.customer!!.phone)
             text_input_product.setText(it.product!!.name)
-            text_input_value.setText(it.product!!.value.toString().trim().replace(",", "."))
+            text_input_value.setText(MoneyFormat.toMoney(it.product!!.value!!))
             text_input_date.setText(DateHelper.timesTampToString(it.date!!, BR_PATTERN_DISPLAY))
             switch_pay_day.isChecked = it.payState
         }
